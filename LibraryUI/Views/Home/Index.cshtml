@@ -1,0 +1,116 @@
+﻿@using Dto;
+@{
+    ViewData["Title"] = "Home Page";
+}
+@model List<BookListDto>
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0">Müşteri Listesi</h6>
+        </div>
+        
+        <div class="table-responsive">
+            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                <thead>
+                    <tr class="text-white">
+                        <th scope="col">Kitap Adı</th>
+                        <th scope="col">Yazar Adı</th>
+                        <th scope="col">Resmi </th>
+                        <th scope="col">Durumu</th> 
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                  @foreach (var item in Model.OrderBy(x=>x.BookName))
+                    {      
+                        <tr>
+                            <td> @item.BookName</td>
+                            <td>@item.WriterName</td>
+                            <td class="text-center"><img src="/admin/img/@item.ImagePath" width="135" height="200" /></td>
+                            <td>
+                                @if (item.Status == false)
+                                {
+                                    <span>@item.BrowwerDate tarihine kadar @item.BrowwerName kişisindedir</span>
+                                }
+                                else
+                                {
+                                    <span>Kütüphanede</span>
+                                    <button data-bs-target="#@item.BookName.Substring(0,3)" type="button" class="btn btn-primary" data-bs-toggle="modal">Ödünç Ver</button>
+                                }
+
+                            </td>
+
+
+                        </tr>
+                        <div class="modal tab-pane fade " id="@item.BookName.Substring(0,3)" aria-labelledby="@item.BookName.Substring(0,3)" role="tabpanel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content bg-secondary">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Ödünç Ver</h5>
+                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form class="js-validate" action="/Home/Browwer">
+                                        <div class="modal-body">
+
+                                            <div class="row mb-3">
+                                                <label for="label" class="col-form-label col-sm-3 pt-0">Kitap Adı:*</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" value="@item.BookName" class="form-control mb-3 col-xl-6" id="name" name="BookName" required>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="label" class="col-form-label col-sm-3 pt-0">Ödünç Alan Adı:*</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control mb-3 col-xl-6" id="writer" name="BrowwerName" required>
+                                                    <input type="text" class="form-control mb-3 col-xl-6" value="@item.Id" id="id" name="BookId" hidden>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="label" class="col-form-label col-sm-3 pt-0">Ödünç Alan Soyadı:*</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control mb-3 col-xl-6" id="writer" name="BrowwerSurname" required>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <label for="label" class="col-form-label col-sm-3 pt-0">Teslim Tarihi:*</label>
+                                                <div class="col-sm-6">
+                                                    <div class="border-bottom border-width-2 border-color-1">
+                                                        <div id="datepickerWrapperFromTwo" class="u-datepicker input-group">
+                                                            <div class="input-group-prepend">
+                                                                <span class="d-flex align-items-center mr-2">
+                                                                    <i class="flaticon-calendar text-primary font-weight-semi-bold"></i>
+                                                                </span>
+                                                            </div>
+                                                            <input name="BrowwerDateTime" class="js-range-datepicker font-size-16 shadow-none font-weight-medium form-control hero-form bg-transparent border-0"
+                                                            required   
+                                                            type="date"
+                                                               data-rp-wrapper="#datepickerWrapperFromTwo"
+                                                               data-rp-type="range"
+                                                               data-rp-date-format="M d / Y"
+                                                               data-rp-default-date='["Jan 1 / 2022", "Jan 15 / 2022"]' />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="close btn btn-primary" data-bs-dismiss="modal" aria-label="Close">Vazgeç</button>
+                                            <button type="submit" class="btn btn-primary">Ödünç Ver</button>
+                                        </div>
+                                    </form>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    }
+                   
+                    
+                    
+                    
+                    </tbody>
+            </table>
+        </div>
+    </div>
+</div>

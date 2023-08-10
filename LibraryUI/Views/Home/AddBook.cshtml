@@ -1,0 +1,81 @@
+﻿<div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary  rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0">Kitap Ekle</h6>
+        </div>
+        <div class="col-12 col-xl-12">
+            <form method="post" action="/Home/AddBook" enctype="multipart/form-data" class="js-validate">
+                <div class="bg-secondary rounded h-100 p-4">
+
+
+                    
+                    
+                    <div class="row mb-3">
+                        <label for="label" class="col-form-label col-sm-3 pt-0">Kitap Adı:*</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control mb-3 col-xl-6" id="name" name="BookName" required>
+                        </div>
+                    </div> 
+                    <div class="row mb-3">
+                        <label for="label" class="col-form-label col-sm-3 pt-0">Yazar Adı:*</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control mb-3 col-xl-6" id="writer" name="WriterName" required>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="formFile" class="form-label col-sm-3 pt-0">
+                            Resim (135*200):
+                            *
+                        </label>
+                        <div class="col-sm-6">
+                            <input class="form-control bg-dark  mb-3 col-xl-6" name="formFile" type="file" id="formFile" required>
+                        </div>
+                    </div>
+                   
+
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-9 " style="display: flex; justify-content: end">
+
+                        <button type="submit" class="btn btn-primary btn-lg">KAYDET</button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+    //function bookadd()
+    //{
+    //    var BookName = $('#name').val();
+    //    if (BookName == "") {
+    //        alert('Kitap Adı Boş Bırakılamaz');
+    //    }
+    //    var WriterName = $('#writer').val();
+    //    if (WriterName == "") {
+    //        alert('Yazar Adı Boş Bırakılamaz');
+    //    }
+    //    var ImagePath = $('#formFile').val();
+    //    if (ImagePath == "") {
+    //        alert('Resim Alanı Boş Bırakılamaz');
+    //    }
+    //    var Image = $('#formFile').serialize();
+    //    var formData = new FormData();
+    //    formData.append('file', $('#formFile').get(0).files[0]);
+    //    formData.append('fileName', $("#fileName").val());
+    //    if (BookName != "" && WriterName != "" && ImagePath != "") {
+    //        $.ajax({
+    //            url:'/Home/AddBook',
+    //            method:'POST',
+    //            data:{BookName:BookName , WriterName:WriterName , Image:formData.values()""},
+    //            success: function(data){
+    //                window.location.href = '/Home/Index/';
+
+    //            }
+    //        })
+    //    }
+
+    //}
+</script>
